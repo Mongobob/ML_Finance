@@ -1,3 +1,39 @@
 '''
 The Code for getting data, mapping and cleaning it
 '''
+import pandas
+
+def get_data(paths, filename):
+    '''
+    :param paths: array with relative paths of data
+    :param filename: name of output
+    :return: csv with joint data
+    '''
+    assert isinstance(paths, list)
+    assert len(paths)>0
+    assert filename
+    names=[chr(i) for i in range(97, 97+len(paths))]
+    print(names)
+    k=0
+    arr=[]
+    df=[]
+    for el in paths:
+        print(len(arr))
+        assert isinstance(el, str)
+        name=names[k]
+        if len(arr)==0:
+            arr= pandas.read_csv(el)
+            arr.to_csv(r'C:\Users\Sandro\OneDrive\Dokumente\Universität Zürich\Aufbaustufe\2020 FS\Introduction to Machine Learning\Group Project\Data' + '\\' + name+ '.csv', index=False)
+        else:
+            arr=pandas.read_csv(el)
+            arr.to_csv(r'C:\Users\Sandro\OneDrive\Dokumente\Universität Zürich\Aufbaustufe\2020 FS\Introduction to Machine Learning\Group Project\Data'+'\\'+name+'.csv', index=False)
+        k+=1
+        
+    return arr
+
+
+
+p=[r'C:\Users\Sandro\OneDrive\Dokumente\Universität Zürich\Aufbaustufe\2020 FS\Introduction to Machine Learning\Group Project\Data\SP500_LongTermCreditRating_Ratios_combined.csv',
+    r'C:\Users\Sandro\OneDrive\Dokumente\Universität Zürich\Aufbaustufe\2020 FS\Introduction to Machine Learning\Group Project\Data\Ratings.csv',
+   r'C:\Users\Sandro\OneDrive\Dokumente\Universität Zürich\Aufbaustufe\2020 FS\Introduction to Machine Learning\Group Project\Data\SP500_CompanyList.csv']
+print(get_data(p,'query'))
