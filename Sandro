@@ -1,0 +1,30 @@
+'''
+The Code for getting data, mapping and cleaning it
+'''
+import pandas
+
+def get_data(paths):
+    '''
+    :param paths: array with 3 relative paths of data
+    :return: 3 arrays with data
+    '''
+    assert isinstance(paths, list)
+    assert len(paths)>0
+    names=['P500_LongTermCreditRating_Ratios_combined','Ratings','SP500_CompanyList']
+    print(names)
+    k=0
+    arr=[]
+    df=[]
+    for el in paths:
+        print(len(arr))
+        assert isinstance(el, str)
+        name=names[k]
+        arr = pandas.read_csv(el)
+        if k==0:
+            arr1=arr
+        elif k==1:
+            arr2=arr
+        else:
+            arr3=arr
+        k+=1
+    return arr1, arr2, arr3
